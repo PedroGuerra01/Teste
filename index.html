@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CX Dashboard - Vertem</title>
+</head>
+<body>
+    <h1>CX Dashboard</h1>
+    <input id="empresa" placeholder="Nome da empresa"/>
+    <button onclick="carregar()">Ver Insights</button>
+    <pre id="saida"></pre>
+
+    <script>
+        async function carregar() {
+            const empresa = document.getElementById("empresa").value;
+            const res = await fetch(`http://localhost:8000/insights/${empresa}`);
+            const data = await res.json();
+            document.getElementById("saida").innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
